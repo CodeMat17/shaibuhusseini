@@ -43,17 +43,26 @@ function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-      className="relative w-9 h-9 flex items-center justify-center rounded-full border border-white/20 hover:bg-white/10 transition-colors backdrop-blur-sm"
-      aria-label="Toggle theme"
-    >
-      <AnimatePresence mode="wait" initial={false}>
+      className='relative w-9 h-9 flex items-center justify-center rounded-full border border-amber-500 hover:bg-white/10 transition-colors backdrop-blur-sm '
+      aria-label='Toggle theme '>
+      <AnimatePresence mode='wait' initial={false}>
         {theme === "dark" ? (
-          <motion.span key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
-            <Sun size={15} />
+          <motion.span
+            key='sun'
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: 90, opacity: 0 }}
+            transition={{ duration: 0.2 }}>
+            <Sun size={15} className='text-amber-500' />
           </motion.span>
         ) : (
-          <motion.span key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
-            <Moon size={15} />
+          <motion.span
+            key='moon'
+            initial={{ rotate: 90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            exit={{ rotate: -90, opacity: 0 }}
+            transition={{ duration: 0.2 }}>
+            <Moon size={15} className='text-amber-500' />
           </motion.span>
         )}
       </AnimatePresence>
@@ -98,14 +107,15 @@ export default function Home() {
   }, []);
 
   return (
-    <div id="main-content" className="relative bg-background text-foreground">
+    <div id="main-content" className="relative bg-background text-foreground overflow-x-hidden">
 
       {/* ── NAVBAR ── */}
       <header className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${scrolled ? "bg-background/80 backdrop-blur-xl border-b border-border/40 shadow-sm" : "bg-transparent"}`}>
         <div className="max-w-7xl mx-auto px-5 sm:px-8 h-16 flex items-center justify-between">
           <motion.a href="#" aria-label="Dr. Shaibu Husseini — home" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}
-            className={`font-playfair font-bold text-base tracking-tight transition-colors duration-300 ${scrolled ? "" : "text-amber-300"}`}>
-            Dr. Shaibu Husseini
+            className={`font-playfair font-bold text-base tracking-tight transition-colors duration-300 min-w-0 truncate mr-4 ${scrolled ? "" : "text-amber-300"}`}>
+            <span className="hidden sm:inline">Dr. Shaibu Husseini</span>
+            <span className="sm:hidden">Dr. Shaibu</span>
           </motion.a>
           <nav aria-label="Primary navigation" className="hidden md:flex items-center gap-0.5">
             {NAV_LINKS.map((link, i) => (
@@ -126,7 +136,7 @@ export default function Home() {
                   aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
                   aria-expanded={menuOpen}
                   aria-controls="mobile-nav"
-                  className="w-9 h-9 flex items-center justify-center rounded-full border border-border hover:bg-accent transition-colors">
+                  className="w-9 h-9 flex items-center justify-center rounded-full border border-border hover:bg-accent transition-colors text-amber-500">
                   {menuOpen ? <X size={15} aria-hidden="true" /> : <Menu size={15} aria-hidden="true" />}
                 </button>
               </SheetTrigger>
@@ -168,7 +178,7 @@ export default function Home() {
             </motion.div>
 
             <motion.h1 initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="font-playfair text-6xl sm:text-7xl md:text-8xl lg:text-[96px] font-bold text-white leading-[0.95] tracking-tight">
+              className="font-playfair text-5xl sm:text-6xl md:text-8xl lg:text-[96px] font-bold text-white leading-[0.95] tracking-tight">
               Dr. Shaibu
               <br />
               <span className="bg-gradient-to-r from-amber-300 via-amber-400 to-orange-400 bg-clip-text text-transparent">Husseini</span>
@@ -207,7 +217,7 @@ export default function Home() {
 
             {/* Stats row */}
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1, duration: 0.6 }}
-              className="mt-14 pt-8 border-t border-white/15 grid grid-cols-3 gap-8 max-w-sm">
+              className="mt-14 pt-8 border-t border-white/15 grid grid-cols-3 gap-4 sm:gap-8 max-w-sm">
               {[{ value: "30+", label: "Years in Media" }, { value: "16yrs", label: "AMAA Chair" }, { value: "465", label: "Staff Empowered" }].map((s) => (
                 <div key={s.label}>
                   <div className="font-playfair text-3xl font-bold text-amber-400">{s.value}</div>
